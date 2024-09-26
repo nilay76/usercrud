@@ -17,8 +17,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class User {
 	
 	@Id
@@ -37,6 +35,16 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
+
+	public User(){}
+
+	public User(Long id, String name, String email, String password, List<Post> posts) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.posts = posts;
+	}
 
 	public String getName() {
 		return name;
@@ -69,7 +77,5 @@ public class User {
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
-
-	
 
 }

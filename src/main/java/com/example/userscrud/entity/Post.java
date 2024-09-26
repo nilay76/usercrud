@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class Post {
 	
 	@Id
@@ -23,8 +21,15 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private User user;
-	
-	
+
+	public Post(){}
+
+	public Post(Integer id, String description, User user) {
+		this.id = id;
+		this.description = description;
+		this.user = user;
+	}
+
 	public Integer getId() {
 		return id;
 	}

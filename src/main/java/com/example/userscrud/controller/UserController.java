@@ -25,17 +25,11 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(path="/users", produces="application/json")
 public class UserController {
 	
-	private UserService userService;
-	private PostService postService;
-	
-	public UserController(UserService userService, PostService postService) {
-		this.userService = userService;
-		this.postService = postService;
-	}
-	
+	@Autowired private UserService userService;
+	@Autowired private PostService postService;
 	
 	@GetMapping("")
 	public List<User> getAllUsers(){
