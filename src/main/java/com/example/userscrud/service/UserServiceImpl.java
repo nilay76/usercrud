@@ -2,6 +2,7 @@ package com.example.userscrud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.userscrud.entity.User;
@@ -13,13 +14,9 @@ import lombok.AllArgsConstructor;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	
+	@Autowired
 	private UserRepository userRepository;
 	
-	public UserServiceImpl(UserRepository repository) {
-		this.userRepository=repository;
-	}
-
 	@Override
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
@@ -44,6 +41,16 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(String email) {
 		User user = userRepository.findByEmailAddress(email);
 		userRepository.delete(user);
+	}
+
+	@Override
+	public List<Long> getUserIdsByName(String name){
+		return userRepository.findIdsByName(name);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		userRepository.deleteById(id);
 	}
 
 }
